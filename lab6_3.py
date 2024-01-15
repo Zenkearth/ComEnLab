@@ -11,6 +11,7 @@ GPIO.setup(sw,GPIO.IN,pull_up_down=GPIO.PUD_UP)
 GPIO.setup(LED, GPIO.OUT)
 
 try:
+    GPIO.output(LED, 0)
     while True:
         if GPIO.wait_for_edge(sw,GPIO.FALLING):
             LED_State = not(LED_State)
