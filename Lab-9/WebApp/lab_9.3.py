@@ -20,14 +20,15 @@ app = Flask(__name__)
 @app.route("/")
 
 def hello():
-    return render_template('9.3_index.html')
+    return render_template('9.3_index.html', led1status = led1state,led2status = led2state)
  
 @app.route("/led1", methods=['POST'])
 def led1on():
     global led1state
     led1state = not led1state
     GPIO.output(LED1, led1state)
-    return render_template('9.3_index.html')
+    return render_template('9.3_index.html', led1status = led1state,led2status = led2state)
+
     
  
 @app.route("/led2", methods=['POST'])
@@ -35,7 +36,7 @@ def led1off():
     global led2state
     led2state = not led2state
     GPIO.output(LED2, led2state)
-    return render_template('9.3_index.html')
+    return render_template('9.3_index.html', led1status = led1state,led2status = led2state)
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0',port=2500)
